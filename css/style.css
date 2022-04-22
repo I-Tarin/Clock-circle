@@ -68,7 +68,7 @@ body
 #time div span
 {
   position: absolute;
-  transform: translateX(-50%) translateY(-2px);
+  transform: translateX(-50%) translateY(5px);
   font-size: 0.4em;
   font-weight: 300;
   letter-spacing: 0.1em;
