@@ -21,15 +21,33 @@ setInterval(() => {
   if (h > 12) {
     h = h - 12;
   }
+
   // Добавряем 0 к одиночкам
   h = (h < 10) ? "0" + h : h
   m = (m < 10) ? "0" + m : m
   s = (s < 10) ? "0" + s : s
 
-  hours.innerHTML = h + "<br><span>час</span>"
-  minutes.innerHTML = m + "<br><span>мин</span>"
-  seconds.innerHTML = s + "<br><span>сек</span>"
+  hours.textContent = h
+  minutes.textContent = m
+  seconds.textContent = s
   ampm.innerHTML = am
+
+  // падежи
+  const numWord = (value, world) => {
+    value = Math.abs(value) % 100
+    const lastNum = value % 10
+
+    if (value > 10 & value < 20) return world[2]
+    if (lastNum > 1 && lastNum < 5) return world[1]
+    if (lastNum === 1) return world[0]
+
+    return world[2]
+  }
+
+  hours.nextElementSibling.textContent = numWord(h, ['час', 'часа', 'часов'])
+  minutes.nextElementSibling.textContent = numWord(m, ['минута', 'минуты', 'минут'])
+  seconds.nextElementSibling.textContent = numWord(s, ['секунда', 'секунды', 'секунд'])
+
 
   // 12 часов аналог
   hh.style.strokeDashoffset = 440 - (440 * h) / 12
